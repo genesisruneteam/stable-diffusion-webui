@@ -182,6 +182,12 @@ def wrap_gradio_call(func, extra_outputs=None, add_stats=False):
         t = time.perf_counter()
 
         try:
+            print()
+            print("============================================")
+            print("============ Prompt ========================")
+            print(args)
+            print("============================================")
+            print()
             res = list(func(*args, **kwargs))
         except Exception as e:
             # When printing out our debug argument list, do not print out more than a MB of text
