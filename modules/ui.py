@@ -138,7 +138,7 @@ def save_files(js_data, images, do_make_zip, index):
 
             unicorn_logger.debug("path: %s", str(path))
             unicorn_logger.debug("basename: ")
-            unicorn_logger("prompt: %s", str(p.all_prompts[i]))
+            unicorn_logger.debug("prompt: %s", str(p.all_prompts[i]))
             unicorn_logger.debug("info: %s", str(p.infotexts[image_index]))
             unicorn_logger.debug("pnginfo_section_name: ")
             unicorn_logger.debug("existing_pnginfo: ")

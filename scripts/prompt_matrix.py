@@ -90,7 +90,7 @@ class Script(scripts.Script):
         if opts.grid_save:
             unicorn_logger.debug("path: %s", str(p.outpath_grids))
             unicorn_logger.debug("basename: prompt_matrix")
-            unicorn_logger("prompt: %s", str(original_prompt))
+            unicorn_logger.debug("prompt: %s", str(original_prompt))
             unicorn_logger.debug("info: ")
             unicorn_logger.debug("pnginfo_section_name: ")
             unicorn_logger.debug("existing_pnginfo: ")
