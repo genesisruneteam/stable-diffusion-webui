@@ -57,14 +57,15 @@ def initialize():
 
     modules.scripts.load_scripts()
 
-    # modules.sd_vae.refresh_vae_list()
-    # modules.sd_models.load_model()
-    # shared.opts.onchange("sd_model_checkpoint", wrap_queued_call(lambda: modules.sd_models.reload_model_weights()))
-    # shared.opts.onchange("sd_vae", wrap_queued_call(lambda: modules.sd_vae.reload_vae_weights()), call=False)
-    # shared.opts.onchange("sd_vae_as_default", wrap_queued_call(lambda: modules.sd_vae.reload_vae_weights()), call=False)
-    # shared.opts.onchange("sd_hypernetwork", wrap_queued_call(lambda: shared.reload_hypernetworks()))
-    # shared.opts.onchange("sd_hypernetwork_strength", modules.hypernetworks.hypernetwork.apply_strength)
-    # shared.opts.onchange("temp_dir", ui_tempdir.on_tmpdir_changed)
+    ################## unicorn enable/disable model ###########################
+    modules.sd_vae.refresh_vae_list()
+    modules.sd_models.load_model()
+    shared.opts.onchange("sd_model_checkpoint", wrap_queued_call(lambda: modules.sd_models.reload_model_weights()))
+    shared.opts.onchange("sd_vae", wrap_queued_call(lambda: modules.sd_vae.reload_vae_weights()), call=False)
+    shared.opts.onchange("sd_vae_as_default", wrap_queued_call(lambda: modules.sd_vae.reload_vae_weights()), call=False)
+    shared.opts.onchange("sd_hypernetwork", wrap_queued_call(lambda: shared.reload_hypernetworks()))
+    shared.opts.onchange("sd_hypernetwork_strength", modules.hypernetworks.hypernetwork.apply_strength)
+    shared.opts.onchange("temp_dir", ui_tempdir.on_tmpdir_changed)
 
     if cmd_opts.tls_keyfile is not None and cmd_opts.tls_keyfile is not None:
 
