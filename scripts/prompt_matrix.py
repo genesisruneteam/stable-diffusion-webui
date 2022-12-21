@@ -92,7 +92,7 @@ class Script(scripts.Script):
             unicorn_logger.debug("path: %s", str(p.outpath_grids))
             unicorn_logger.debug("basename: prompt_matrix")
             unicorn_logger("prompt: %s", str(original_prompt))
-            unicorn_logger.debug("info: "))
+            unicorn_logger.debug("info: ")
             unicorn_logger.debug("pnginfo_section_name: ")
             unicorn_logger.debug("existing_pnginfo: ")
             unicorn_logger.debug("suffix: ")
