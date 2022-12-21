@@ -20,7 +20,6 @@ from torch.nn.init import normal_, xavier_normal_, xavier_uniform_, kaiming_norm
 
 import logging
 unicorn_logger = logging.getLogger(__name__)
-unicorn_logger.basicConfig(level=logging.DEBUG, filename='unicorn.log', format='%(asctime)s %(name)s %(levelname)s:%(message)s')
 
 from collections import defaultdict, deque
 from statistics import stdev, mean

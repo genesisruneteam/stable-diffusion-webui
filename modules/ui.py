@@ -42,7 +42,6 @@ from modules.generation_parameters_copypaste import image_from_url_text
 
 import logging
 unicorn_logger = logging.getLogger(__name__)
-unicorn_logger.basicConfig(level=logging.DEBUG, filename='unicorn.log', format='%(asctime)s %(name)s %(levelname)s:%(message)s')
 
 # this is a fix for Windows users. Without it, javascript files will be served with text/html content-type and the browser will not show any UI
 mimetypes.init()

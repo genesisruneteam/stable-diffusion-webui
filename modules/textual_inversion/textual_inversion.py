@@ -20,7 +20,6 @@ from modules.textual_inversion.image_embedding import (embedding_to_b64, embeddi
 
 import logging
 unicorn_logger = logging.getLogger(__name__)
-unicorn_logger.basicConfig(level=logging.DEBUG, filename='unicorn.log', format='%(asctime)s %(name)s %(levelname)s:%(message)s')
 
 class Embedding:
     def __init__(self, vec, name, step=None):

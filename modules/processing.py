@@ -27,7 +27,6 @@ from ldm.data.util import AddMiDaS
 from ldm.models.diffusion.ddpm import LatentDepth2ImageDiffusion
 
 unicorn_logger = logging.getLogger(__name__)
-unicorn_logger.basicConfig(level=logging.DEBUG, filename='unicorn.log', format='%(asctime)s %(name)s %(levelname)s:%(message)s')
 
 from einops import repeat, rearrange
 
