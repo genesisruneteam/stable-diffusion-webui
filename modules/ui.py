@@ -41,6 +41,10 @@ import modules.textual_inversion.ui
 import modules.hypernetworks.ui
 from modules.generation_parameters_copypaste import image_from_url_text
 
+import logging
+unicorn_logger = logging.getLogger(__name__)
+unicorn_logger.basicConfig(level=logging.DEBUG, filename='unicorn.log', format='%(asctime)s %(name)s %(levelname)s:%(message)s')
+
 # this is a fix for Windows users. Without it, javascript files will be served with text/html content-type and the browser will not show any UI
 mimetypes.init()
 mimetypes.add_type('application/javascript', '.js')
@@ -133,6 +137,13 @@ def save_files(js_data, images, do_make_zip, index):
             is_grid = image_index < p.index_of_first_image
             i = 0 if is_grid else (image_index - p.index_of_first_image)
 
+            unicorn_logger.debug("path: %s", str(path))
+            unicorn_logger.debug("basename: ")
+            unicorn_logger("prompt: %s", str(p.all_prompts[i]))
+            unicorn_logger.debug("info: %s", str(p.infotexts[image_index]))
+            unicorn_logger.debug("pnginfo_section_name: ")
+            unicorn_logger.debug("existing_pnginfo: ")
+            unicorn_logger.debug("suffix: ")
             fullfn, txt_fullfn = save_image(image, path, "", seed=p.all_seeds[i], prompt=p.all_prompts[i], extension=extension, info=p.infotexts[image_index], grid=is_grid, p=p, save_to_dirs=save_to_dirs)
 
             filename = os.path.relpath(fullfn, path)

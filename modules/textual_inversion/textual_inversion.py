@@ -18,6 +18,10 @@ from modules.textual_inversion.image_embedding import (embedding_to_b64, embeddi
                                                        insert_image_data_embed, extract_image_data_embed,
                                                        caption_image_overlay)
 
+import logging
+unicorn_logger = logging.getLogger(__name__)
+unicorn_logger.basicConfig(level=logging.DEBUG, filename='unicorn.log', format='%(asctime)s %(name)s %(levelname)s:%(message)s')
+
 class Embedding:
     def __init__(self, vec, name, step=None):
         self.vec = vec
@@ -398,6 +402,14 @@ def train_embedding(embedding_name, learn_rate, batch_size, gradient_step, data_
 
                     if image is not None:
                         shared.state.current_image = image
+                        unicorn_logger.debug("if image is not None:")
+                        unicorn_logger.debug("path: %s", str(images_dir))
+                        unicorn_logger.debug("basename: ")
+                        unicorn_logger("prompt: %s", str(p.prompt))
+                        unicorn_logger.debug("info: %s", str(processed.infotexts[0]))
+                        unicorn_logger.debug("pnginfo_section_name: parameters")
+                        unicorn_logger.debug("existing_pnginfo: ")
+                        unicorn_logger.debug("suffix: ")
                         last_saved_image, last_text_info = images.save_image(image, images_dir, "", p.seed, p.prompt, shared.opts.samples_format, processed.infotexts[0], p=p, forced_filename=forced_filename, save_to_dirs=False)
                         last_saved_image += f", prompt: {preview_text}"
 
@@ -427,6 +439,13 @@ def train_embedding(embedding_name, learn_rate, batch_size, gradient_step, data_
                         captioned_image.save(last_saved_image_chunks, "PNG", pnginfo=info)
                         embedding_yet_to_be_embedded = False
 
+                    unicorn_logger.debug("path: %s", str(images_dir))
+                    unicorn_logger.debug("basename: ")
+                    unicorn_logger("prompt: %s", str(p.prompt))
+                    unicorn_logger.debug("info: %s", str(processed.infotexts[0]))
+                    unicorn_logger.debug("pnginfo_section_name: ")
+                    unicorn_logger.debug("existing_pnginfo: ")
+                    unicorn_logger.debug("suffix: ")
                     last_saved_image, last_text_info = images.save_image(image, images_dir, "", p.seed, p.prompt, shared.opts.samples_format, processed.infotexts[0], p=p, forced_filename=forced_filename, save_to_dirs=False)
                     last_saved_image += f", prompt: {preview_text}"
 

@@ -11,6 +11,10 @@ from modules import images, processing, devices
 from modules.processing import Processed, process_images
 from modules.shared import opts, cmd_opts, state
 
+import logging
+unicorn_logger = logging.getLogger(__name__)
+unicorn_logger.basicConfig(level=logging.DEBUG, filename='unicorn.log', format='%(asctime)s %(name)s %(levelname)s:%(message)s')
+
 
 # this function is taken from https://github.com/parlance-zz/g-diffuser-bot
 def get_matched_noise(_np_src_image, np_mask_rgb, noise_q=1, color_variation=0.05):
@@ -275,9 +279,25 @@ class Script(scripts.Script):
 
         if opts.samples_save:
             for img in all_processed_images:
+                unicorn_logger.debug("if opts.samples_save:")
+                unicorn_logger.debug("path: %s", str(p.outpath_samples))
+                unicorn_logger.debug("basename: ")
+                unicorn_logger("prompt: %s", str(p.prompt))
+                unicorn_logger.debug("info: %s", str(res.info))
+                unicorn_logger.debug("pnginfo_section_name: ")
+                unicorn_logger.debug("existing_pnginfo: ")
+                unicorn_logger.debug("suffix: ")
                 images.save_image(img, p.outpath_samples, "", res.seed, p.prompt, opts.grid_format, info=res.info, p=p)
 
         if opts.grid_save and not unwanted_grid_because_of_img_count:
+            unicorn_logger.debug("if opts.grid_save and not unwanted_grid_because_of_img_count:")
+            unicorn_logger.debug("path: %s", str(p.outpath_grids))
+            unicorn_logger.debug("basename: grid")
+            unicorn_logger("prompt: %s", str(p.prompt))
+            unicorn_logger.debug("info: %s", str(res.info))
+            unicorn_logger.debug("pnginfo_section_name: ")
+            unicorn_logger.debug("existing_pnginfo: ")
+            unicorn_logger.debug("suffix: ")
             images.save_image(combined_grid_image, p.outpath_grids, "grid", res.seed, p.prompt, opts.grid_format, info=res.info, short_filename=not opts.grid_extended_filename, grid=True, p=p)
 
         return res

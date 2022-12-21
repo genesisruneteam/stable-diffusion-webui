@@ -24,6 +24,10 @@ import piexif.helper
 import gradio as gr
 import safetensors.torch
 
+import logging
+unicorn_logger = logging.getLogger(__name__)
+unicorn_logger.basicConfig(level=logging.DEBUG, filename='unicorn.log', format='%(asctime)s %(name)s %(levelname)s:%(message)s')
+
 class LruCache(OrderedDict):
     @dataclass(frozen=True)
     class Key:
@@ -193,6 +197,13 @@ def run_extras(extras_mode, resize_mode, image, image_folder, input_dir, output_
         else:
             basename = ''
 
+        unicorn_logger.debug("path: %s", str(outpath))
+        unicorn_logger.debug("basename: %s", str(basename))
+        unicorn_logger.debug("prompt: ")
+        unicorn_logger.debug("info: %s", str(info))
+        unicorn_logger.debug("pnginfo_section_name: extras")
+        unicorn_logger.debug("existing_pnginfo: %s", str(existing_pnginfo))
+        unicorn_logger.debug("suffix: ")
         images.save_image(image, path=outpath, basename=basename, seed=None, prompt=None, extension=opts.samples_format, info=info, short_filename=True,
                           no_prompt=True, grid=False, pnginfo_section_name="extras", existing_info=existing_pnginfo, forced_filename=None)
 

@@ -19,6 +19,10 @@ import modules.sd_samplers
 import modules.sd_models
 import re
 
+import logging
+unicorn_logger = logging.getLogger(__name__)
+unicorn_logger.basicConfig(level=logging.DEBUG, filename='unicorn.log', format='%(asctime)s %(name)s %(levelname)s:%(message)s')
+
 
 def apply_field(field):
     def fun(p, x, xs):
@@ -383,6 +387,13 @@ class Script(scripts.Script):
             )
 
         if opts.grid_save:
+            unicorn_logger.debug("path: %s", str(p.outpath_grids))
+            unicorn_logger.debug("basename: xy_grid")
+            unicorn_logger("prompt: %s", str(p.prompt))
+            unicorn_logger.debug("info: "))
+            unicorn_logger.debug("pnginfo_section_name: ")
+            unicorn_logger.debug("existing_pnginfo: ")
+            unicorn_logger.debug("suffix: ")
             images.save_image(processed.images[0], p.outpath_grids, "xy_grid", prompt=p.prompt, seed=processed.seed, grid=True, p=p)
 
         return processed

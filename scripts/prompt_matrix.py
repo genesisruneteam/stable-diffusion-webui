@@ -11,6 +11,10 @@ from modules.processing import process_images, Processed
 from modules.shared import opts, cmd_opts, state
 import modules.sd_samplers
 
+import logging
+unicorn_logger = logging.getLogger(__name__)
+unicorn_logger.basicConfig(level=logging.DEBUG, filename='unicorn.log', format='%(asctime)s %(name)s %(levelname)s:%(message)s')
+
 
 def draw_xy_grid(xs, ys, x_label, y_label, cell):
     res = []
@@ -84,6 +88,13 @@ class Script(scripts.Script):
         processed.infotexts.insert(0, processed.infotexts[0])
 
         if opts.grid_save:
+            unicorn_logger.debug("path: %s", str(p.outpath_grids))
+            unicorn_logger.debug("basename: prompt_matrix")
+            unicorn_logger("prompt: %s", str(original_prompt))
+            unicorn_logger.debug("info: "))
+            unicorn_logger.debug("pnginfo_section_name: ")
+            unicorn_logger.debug("existing_pnginfo: ")
+            unicorn_logger.debug("suffix: ")
             images.save_image(processed.images[0], p.outpath_grids, "prompt_matrix", prompt=original_prompt, seed=processed.seed, grid=True, p=p)
 
         return processed

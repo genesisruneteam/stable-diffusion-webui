@@ -9,6 +9,10 @@ from modules.processing import Processed
 from modules.sd_samplers import samplers
 from modules.shared import opts, cmd_opts, state
 
+import logging
+unicorn_logger = logging.getLogger(__name__)
+unicorn_logger.basicConfig(level=logging.DEBUG, filename='unicorn.log', format='%(asctime)s %(name)s %(levelname)s:%(message)s')
+
 class Script(scripts.Script):
     def title(self):
         return "Loopback"
@@ -74,6 +78,13 @@ class Script(scripts.Script):
 
             grid = images.image_grid(history, rows=1)
             if opts.grid_save:
+                unicorn_logger.debug("path: %s", str(p.outpath_grids))
+                unicorn_logger.debug("basename: grid")
+                unicorn_logger("prompt: %s", str(p.prompt))
+                unicorn_logger.debug("info: %s", str(info))
+                unicorn_logger.debug("pnginfo_section_name: ")
+                unicorn_logger.debug("existing_pnginfo: ")
+                unicorn_logger.debug("suffix: ")
                 images.save_image(grid, p.outpath_grids, "grid", initial_seed, p.prompt, opts.grid_format, info=info, short_filename=not opts.grid_extended_filename, grid=True, p=p)
 
             grids.append(grid)

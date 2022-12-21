@@ -8,6 +8,10 @@ from modules import processing, shared, sd_samplers, images, devices
 from modules.processing import Processed
 from modules.shared import opts, cmd_opts, state
 
+import logging
+unicorn_logger = logging.getLogger(__name__)
+unicorn_logger.basicConfig(level=logging.DEBUG, filename='unicorn.log', format='%(asctime)s %(name)s %(levelname)s:%(message)s')
+
 
 class Script(scripts.Script):
     def title(self):
@@ -90,6 +94,13 @@ class Script(scripts.Script):
             result_images.append(combined_image)
 
             if opts.samples_save:
+                unicorn_logger.debug("path: %s", str(p.outpath_samples))
+                unicorn_logger.debug("basename: ")
+                unicorn_logger("prompt: %s", str(p.prompt))
+                unicorn_logger.debug("info: %s", str(initial_info))
+                unicorn_logger.debug("pnginfo_section_name: ")
+                unicorn_logger.debug("existing_pnginfo: ")
+                unicorn_logger.debug("suffix: ")
                 images.save_image(combined_image, p.outpath_samples, "", start_seed, p.prompt, opts.samples_format, info=initial_info, p=p)
 
         processed = Processed(p, result_images, seed, initial_info)
