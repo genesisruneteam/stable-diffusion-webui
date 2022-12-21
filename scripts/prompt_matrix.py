@@ -13,7 +13,6 @@ import modules.sd_samplers
 
 import logging
 unicorn_logger = logging.getLogger(__name__)
-unicorn_logger.basicConfig(level=logging.DEBUG, filename='unicorn.log', format='%(asctime)s %(name)s %(levelname)s:%(message)s')
 
 
 def draw_xy_grid(xs, ys, x_label, y_label, cell):

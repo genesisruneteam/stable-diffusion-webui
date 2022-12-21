@@ -13,7 +13,6 @@ from modules.shared import opts, cmd_opts, state
 
 import logging
 unicorn_logger = logging.getLogger(__name__)
-unicorn_logger.basicConfig(level=logging.DEBUG, filename='unicorn.log', format='%(asctime)s %(name)s %(levelname)s:%(message)s')
 
 
 # this function is taken from https://github.com/parlance-zz/g-diffuser-bot
