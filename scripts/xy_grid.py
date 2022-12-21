@@ -390,10 +390,10 @@ class Script(scripts.Script):
             unicorn_logger.debug("path: %s", str(p.outpath_grids))
             unicorn_logger.debug("basename: xy_grid")
             unicorn_logger("prompt: %s", str(p.prompt))
-            unicorn_logger.debug("info: "))
+            unicorn_logger.debug("info: ")
             unicorn_logger.debug("pnginfo_section_name: ")
             unicorn_logger.debug("existing_pnginfo: ")
             unicorn_logger.debug("suffix: ")
-            images.save_image(processed.images[0], p.outpath_grids, "xy_grid", prompt=p.prompt, seed=processed.seed, grid=True, p=p)
+            images.save_image(processed.images[0], p.outpath_grids, "xy_grid", extension=opts.grid_format, prompt=p.prompt, seed=processed.seed, grid=True, p=p)
 
         return processed
